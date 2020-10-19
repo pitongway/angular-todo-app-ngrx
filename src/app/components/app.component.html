@@ -1,0 +1,53 @@
+<section>
+    <div class="p-4 bg-primary">
+        <h3 class="text-white font-weight-bold">{{ appName }}</h3>
+    </div>
+    <div class="p-4 bg-white container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <form
+                    class="container"
+                    (ngSubmit)="addTodo()"
+                    [formGroup]="formData"
+                >
+                    <div class="row">
+                        <div class="col-10 form-group">
+                            <textarea
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter new ToDo"
+                                formControlName="name"
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="col-2 form-group">
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div style="margin-top: 50px" class="container">
+                    <ul class="list-group col-12">
+                        <li
+                            class="d-flex list-group-item"
+                            *ngFor="let todo of todoList | async; let i = index"
+                        >
+                            {{ todo.name }}
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm ml-auto"
+                                (click)="removeTodo(todo)"
+                            >
+                                <small><i class="fa fa-trash"></i></small>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
